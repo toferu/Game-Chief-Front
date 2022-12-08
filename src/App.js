@@ -8,11 +8,11 @@ import Edit from './components/Edit'
 import './App.css';
 
 const App = () => {
-  const [games, setGames] = useState({})
+  const [games, setGames] = useState([])
 
   const getGames = (res) => {
     axios.get("https://api.rawg.io/api/games?key=0fce8e91c7fa4616b4870ed4e6bfdcd8&page=10")
-    .then(res => setGames(res), 
+    .then(res => setGames(res.data.results), 
     (err) => console.log(err)).catch((error) => console.log(error))
   }
 
@@ -24,7 +24,15 @@ const App = () => {
 
     <div className="">
 
-      <h1>Game</h1>
+      <h1>Game 3</h1>
+
+      {games.map((game) => {
+        return (
+          <>
+          <Games key={game.id} games = {game}/>
+          </>
+        )
+      })}
 
 
     </div>
