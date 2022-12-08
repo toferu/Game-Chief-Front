@@ -26,13 +26,6 @@ const App = () => {
 
       <h1>Game</h1>
 
-      {games.map((game) => {
-        return (
-          <>
-          <Games game = {games}/>
-          </>
-        )
-      })}
 
     </div>
   );
