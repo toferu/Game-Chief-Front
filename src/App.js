@@ -11,10 +11,19 @@ const App = () => {
   const [games, setGames] = useState([])
 
   const getGames = () => {
-    axios.get('http://').then(res => setGames(res.data), 
+    axios.get('http://gamechief.herokuapp.com/games').then(res => setGames(res.data), 
     (err) => console.log(err)).catch((error) => console.log(error))
   }
 
+const handleCreate = (data) => {
+  axios.post('http://gamechief.herokuapp.com/games', data).then((res) =>{
+    console.log(res)
+    setGames([...games, res.data])
+  })
+}
+  useEffect(() => {
+    getGames()
+  }, [])
 
   return (
 
