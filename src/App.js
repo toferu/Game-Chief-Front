@@ -10,22 +10,6 @@ import './App.css';
 
 const App = () => {
 
-<<<<<<< HEAD
-  const getGames = () => {
-    axios.get('http://gamechief.herokuapp.com/games').then(res => setGames(res.data), 
-    (err) => console.log(err)).catch((error) => console.log(error))
-  }
-
-const handleCreate = (data) => {
-  axios.post('http://gamechief.herokuapp.com/games', data).then((res) =>{
-    console.log(res)
-    setGames([...games, res.data])
-  })
-}
-  useEffect(() => {
-    getGames()
-  }, [])
-=======
   const [games, setGames] = useState([])
   // const [gameGenre, setgameGenre] = useState()
   const [genre, setGenre] = useState('')
@@ -39,12 +23,12 @@ const handleCreate = (data) => {
 //  }
 
   const getGames = (res) => {
-    for (let i = 1; i <= 161; i ++) {
-      axios.get(`https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a&metacritic=75,100&page=${i}&genres=shooter&tags=comedy&tags=looter-shooter&platform=4&dates=2018-01-01,2022-12-31`)
+    // for (let i = 1; i <= 161; i ++) {
+      axios.get(`http://localhost3000/games/seed`)
       .then(res => setGames(res.data.results), 
       (err) => console.log(err)).catch((error) => console.log(error))
     }
-  }
+  
 
   
   // const filtering = () => {
@@ -57,7 +41,6 @@ const handleCreate = (data) => {
     // randomGenre()
   }, [])
 
->>>>>>> e8867f051a803e6f8904c5738a549f651322c931
 
   return (
 
