@@ -5,6 +5,7 @@ import Games from './components/Games'
 import Add from './components/Add'
 import Edit from './components/Edit'
 import Decision from './components/Decisions'
+import Search from './components/Search'
 
 import './App.css';
 
@@ -22,42 +23,55 @@ const App = () => {
 //     setGenre(allGenres[Math.floor(Math.random() * allGenres.length)])
 //  }
 
-  const getGames = (res) => {
-    // for (let i = 1; i <= 161; i ++) {
-      axios.get(`http://localhost3000/games/seed`)
-      .then(res => setGames(res.data.results), 
-      (err) => console.log(err)).catch((error) => console.log(error))
-    }
+  // const getGames = (res) => {
+  //   // for (let i = 1; i <= 161; i ++) {
+  //     axios.get(`http://localhost3000/games/seed`)
+  //     .then(res => setGames(res.data.results), 
+  //     (err) => console.log(err)).catch((error) => console.log(error))
+  //   }
   
 
   
-  // const filtering = () => {
-  //   games.genre.includes(genre) ? 
-  // }
+  // // const filtering = () => {
+  // //   games.genre.includes(genre) ? 
+  // // }
   
 
-  useEffect(() => {
-    getGames()
-    // randomGenre()
-  }, [])
+  // useEffect(() => {
+  //   getGames()
+  //   // randomGenre()
+  // }, [])
 
 
-  return (
+//   return (
 
-    <div className="">
+//     <div className="">
 
-      <h1>Game Chief</h1>
-      <p>{games.name}</p>
-      {games.map((game) => {
-        return (
-          <>
-          <Games key={game.id} games = {game}/>
-          </>
-        )
-      })}
+//       <h1>Game Chief</h1>
+//       <p>{games.name}</p>
 
-    </div>
-  );
+//       {games.map((game) => {
+//         return (
+//           <>
+//           <Games key={game.id} games = {game}/>
+//           </>
+//         )
+//       })}
+
+//     </div>
+//   );
+// }
+
+return (
+
+  <div className="">
+
+    <h1>Game Chief</h1>
+
+      <Search />
+
+  </div>
+);
 }
 
 export default App;
