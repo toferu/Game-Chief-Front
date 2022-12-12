@@ -6,6 +6,7 @@ import Add from './components/Add'
 import Edit from './components/Edit'
 import Decision from './components/Decisions'
 import Search from './components/Search'
+import Lucky from './components/Card'
 
 import './App.css';
 
@@ -69,6 +70,7 @@ return (
     <h1>Game Chief</h1>
 
       <Search />
+      <Lucky />
 
   </div>
 );

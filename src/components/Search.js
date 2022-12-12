@@ -6,6 +6,9 @@ const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [gameData, setGameData] = useState([])
     const [resultArray, setResultArray] = useState([])
+    const [hidden, setHidden] = useState(false)
+   
+   
     const newSearch = () => {
 
         axios.get(api + `&search=${searchField}`).then(res => setGameData(res.data.results))
@@ -14,6 +17,7 @@ const Search = () => {
 
     const handleChange = (e) => {
         setSearchField(e.target.value)
+        setHidden(true)
        
 
     }
@@ -32,11 +36,24 @@ return (
         <>
             {gameData.map((data) => {
                 return(
-                    <span><p onClick={() => {setResultArray(resultArray.concat([data]))}}>{data.name}</p><br/></span>
+                    <span>
+                        {<p onClick={ () => 
+                        setResultArray(resultArray.concat([data])).then(gameData.hide)}>
+                        {data.name}</p>} 
+                    </span>
                 )
             })}
         </>
 
+            <div>
+                {resultArray.map((result) => {
+                    return(
+                        <ol>
+                            <li>{result.name}</li>
+                        </ol>
+                    )
+                })}
+            </div>
     </section>
 )    
 
