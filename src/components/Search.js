@@ -8,36 +8,37 @@ const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [data, setData] = useState([])
 
-    const newSearch = async (searchField) => {
-        setApi(api + `&search=${searchField}`)
-        axios.get(api).then(res => res.data.results)
-        setData(res.data.results)
-        return (
-            <>
-            {data.map((data) => {
-                return(
-                    <span>{data.name}</span>
-                )
-            })}
-            </>
-        )
+    const newSearch = () => {
+
+        axios.get(api).then(res => setData(res.data.results))
+
     }
 
     const handleChange = (e) => {
         setSearchField(e.target.value)
-        newSearch()
-    }
+        setApi(api + `&search=${searchField}`)
 
+    }
+//have to change the onchange to an onCLick
 return (
     <section>
         <div>
             <input name='q' 
-            type="search"
+            type="text"
             placeholder="Search Games"
             onChange={handleChange}
             />
+            <input type="submit"
+            onClick={newSearch}/>
         </div>
 
+        <>
+            {data.map((data) => {
+                return(
+                    <span><p>Name: {data.name}</p></span>
+                )
+            })}
+            </>
      
     </section>
 )    
