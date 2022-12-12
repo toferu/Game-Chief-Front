@@ -14,7 +14,7 @@ const Search = () => {
 
     }
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
         setSearchField(e.target.value)
         setApi(api + `&search=${searchField}`)
 
