@@ -4,13 +4,13 @@ const Decision = (props) => {
     const [games, setGames] = useState({...props.games})
     const [genre, setGenre] = useState([])
 
-    const randomGenre = () => {
-        setGenre(games.genres[Math.floor(Math.random() * games.length)])
-     }
+    // const randomGenre = () => {
+    //     setGenre(games.genres[Math.floor(Math.random() * games.length)])
+    //  }
 
-useEffect(() => {
-    randomGenre()
-}, [])
+    // useEffect(() => {
+    //     randomGenre()
+    // }, [])
 
 
      return (
