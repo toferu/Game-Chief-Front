@@ -1,30 +1,27 @@
 import axios from 'axios'
 import {useState} from 'react'
 
-
-
 const Search = () => {
     const [api, setApi] = useState('https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a')
     const [searchField, setSearchField] = useState('')
-    const [data, setData] = useState([])
-
+    const [gameData, setGameData] = useState([])
+    const [resultArray, setResultArray] = useState([])
     const newSearch = () => {
 
-        axios.get(api).then(res => setData(res.data.results))
+        axios.get(api + `&search=${searchField}`).then(res => setGameData(res.data.results))
 
     }
 
-    const handleChange = async (e) => {
+    const handleChange = (e) => {
         setSearchField(e.target.value)
-        setApi(api + `&search=${searchField}`)
+       
 
     }
-//have to change the onchange to an onCLick
 return (
     <section>
         <div>
             <input name='q' 
-            type="text"
+            type="search"
             placeholder="Search Games"
             onChange={handleChange}
             />
@@ -33,16 +30,15 @@ return (
         </div>
 
         <>
-            {data.map((data) => {
+            {gameData.map((data) => {
                 return(
-                    <span><p>Name: {data.name}</p></span>
+                    <span><p onClick={() => {setResultArray(resultArray.concat([data]))}}>{data.name}</p><br/></span>
                 )
             })}
-            </>
-     
+        </>
+
     </section>
 )    
 
 }
-
 export default Search
