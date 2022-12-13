@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 const Search = (props) => {
     const [api, setApi] = useState('https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a')
@@ -29,13 +29,32 @@ const Search = (props) => {
 
     }
 
+    // const list = () => {
+    //     resultArray.map((result) => {
+    //         return(
+    //             <ol>
+    //                 <li>{result.name}</li>
+    //                 {/* <input type='text' name='comment' placeholder='add a comment'/> */}
+    //                 <button onClick={() => {
+    //                 handleRemove(result) }} value='Remove'>Remove</button>
+    //             </ol>
+    //         )
+    //     })
+    // }
 
-    const splice = (event) => {
-        resultArray.splice(event, 1)
-        //Trying to hide the text of the removed data
-        event.target.value = null
-        console.log(resultArray)
+    const handleRemove = (result) => {
+        resultArray.splice(resultArray.indexOf(result), 1)
+        // list()
     }
+    
+    // const splice = (index) => {
+    //     resultArray.splice(index, 1)
+    //     console.log(resultArray)
+    // }
+    // useEffect(() => {
+    //     list()
+    // }, [])
+    
 return (
     <section>
         <div>
@@ -53,8 +72,10 @@ return (
             {hidden ? gameData.map((data) => {
                 return(
                     <span>
-                        {<p onClick={ event => {
+                        {<p onClick={ () => {
                         setResultArray(resultArray.concat([data]))
+                        console.log(resultArray)
+                        // list()
                         setHidden(false)}
                         }>
                         {data.name}</p>
@@ -65,16 +86,16 @@ return (
         </>
 
             <div>
-                {resultArray.map((result) => {
-                    return(
-                        <ol>
-                           <li>{result.name}</li>
-                            {/* <input type='text' name='comment' placeholder='add a comment'/> */}
-                            <button onClick={() => {
-                             splice()}} value='Remove'>Remove</button>
-                        </ol>
-                    )
-                })} 
+            {resultArray.map((result) => {
+            return(
+                <ol>
+                    <li>{result.name}</li>
+                    {/* <input type='text' name='comment' placeholder='add a comment'/> */}
+                    <button onClick={() => {
+                    handleRemove(result) }} value='Remove'>Remove</button>
+                </ol>
+            )
+        })}
                 <input type='submit' value='Submit' onClick={handleSubmit}/>
             </div>
     </section>
