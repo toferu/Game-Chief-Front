@@ -13,14 +13,37 @@ const App = () => {
   const [genre1, setgenre1] = useState('')
   const [genre2, setgenre2] = useState('')
   const [genre3, setgenre3] = useState('')
+  const [tag1, setTag1] = useState('')
+  const [tag2, setTag2] = useState('')
+  const [tag3, setTag3] = useState('')
+
   const [api, setApi] = useState('https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a&metacritic=75,100&page_size=40')
   const [max, setMax] = useState(15)
   const [allGenres, setAllGenre] = useState(['Action', 'Indie', 'Adventure', 'RPG', 'Strategy', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Racing', 'Family', 'Board Games', 'Educational', 'Card'])
   const [stop, setStop] = useState(true)
+  // tags
   const [gameCount, setGameCount] = useState('')
-  const [pageRange, setPageRange] = useState(10)
+  const [pageRange, setPageRange] = useState('')
 
   const [selectedGenres, setSelectedGenres] = useState([])
+
+  //CRUD
+  const [games, setGames] =useState([])
+
+  const getGames = () => {
+    axios.get('http://localhost:3000/games')
+    .then((response) => setGames(response.data), (err) => console.log(err))
+    .catch((error) => console.log(error))
+  }
+
+  const handleCreate = (data) => {
+    axios.post('http://localhost:3000/games', data)
+     .then((response) => {
+        console.log(response)
+        setGames([...games, response.data])
+     })
+  }
+
 
   const generateRandomNumbers = (max) => {
     const randoms = []
@@ -63,9 +86,11 @@ const App = () => {
           getNewAddress(genre2.toLowerCase());
           setSelectedGenres([...selectedGenres, genre2])
           allGenres.splice((allGenres.indexOf(genre2)), 1)
+
           setMax(allGenres.length - 1)
           generateRandomNumbers(max)
           stopFunction()
+
           console.log(allGenres)
         }}>
           {genre2}
@@ -87,45 +112,60 @@ const App = () => {
       </>
     )
   }
-  // once the buttons are gone, the api is used to get the number of games left in the selected genres. 
-  const stopFunction = () => {
-    if (allGenres.length < 14) {
-      setStop(false)
-      // getting the new api to set the gameCount to the number of games we narrowed it down to 
-      axios.get(api)
-      .then((response) => setGameCount(response.data.count))
-
-      getRandomTag()
-    }
-  }
-// I have to generate 1 number for the page number and one number between 1 and 40. Do that 3 times
-  const getRandomTag = () => {
-    if (gameCount < 40) {
-      setPageRange(gameCount) 
-    } else {
-      setPageRange(Math.Floor((gameCount/40) - 1)) 
-    }
-    
-    console.log(pageRange)
-  }
 
   const getNewAddress = (genre) => {
     setApi(api + `&genres=${genre}`)
   }
 
+  // once the buttons are gone, the api is used to get the number of games left in the selected genres. 
+  const stopFunction = () => {
+    if (allGenres.length < 14) {
+      setStop(false)
+      // getting the new api to set the gameCount to the number of games we narrowed it down to 
+    }
+  }
+  // const randomTags = () => {
+  //   randNums = []
+  //   for (let i = 0; i < 3; i++) {
+  //     while (!myArray[i]) {
+  //       let newRandomInt = Math.floor(Math.random() * 40);
+  //       if (!myArray.includes(newRandomInt)) {
+  //         myArray.push(newRandomInt)
+  //       }
+  //     }
+  //   }
+  //   axios.get(api)
+  //   .then((response) => {
+  //     setTag1(res)
+  //   })
+  // }
+// I have to generate 1 number for the page number and one number between 1 and 40. Do that 3 times
+
+  // const getPageRange = () => {
+  //   if (gameCount < 40) {
+  //     setPageRange(gameCount) 
+  //     console.log(pageRange)
+  //   } else { 
+  //     setPageRange(Math.floor((gameCount/40) - 1)) 
+  //   }
+  // }
 
   useEffect(() => {
     generateRandomNumbers(max)
+    getGames()
+
   }, [])
 
   return (
     <div className="">
- 
+      <Add handleCreate = {handleCreate}/>
       <h1>Game Chief</h1>
        {stop ? makeGenreButtons() : null}
        {selectedGenres} <br/>
        {api} <br/>
-       {gameCount}
+       {gameCount} <br/>
+       {pageRange}
+       
     </div>
   );
 }
