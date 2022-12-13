@@ -21,16 +21,15 @@ const Add = (props) => {
         <br/>
         <label htmlFor='image'>Image:</label>
         <input type='text' name='image' onChange={handleChange}/>
-        
         <br/>
         <br/>
         <label htmlFor='genre'>Genre:</label>
         <input type='text' name='genre' onChange={handleChange}/>
-        
         <br/>
         <br/>
         <label htmlFor='platform'>Platform:</label>
         <input type='text' name='platform' onChange={handleChange}/>
+        <br/>
         <input type="submit"/>
       </form>
     </>
