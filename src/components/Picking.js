@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import axios from 'axios'
 
 const Picking = (props) => {
 
@@ -19,6 +20,9 @@ const Picking = (props) => {
     
     const [allGenres, setAllGenres] = useState(['Action', 'Indie', 'Adventure', 'RPG', 'Strategy', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Racing', 'Family', 'Board Games', 'Educational', 'Card'])
     const [allTags, setAllTags] = useState(['SinglePlayer', 'Atmospheric', "Full controller support", "Open World", "Story Rich", "Difficult", "Exploration", "Cute", "Dark Fantasy", "Multiple Endings", "Multiplayer", "Co-op", "First-Person", "FPS", "Sci-fi", "Survival", "Free to Play", "Tactical", "PvP", "Team-Based", "Cinematic", "Cyberpunk", "combat", "Battle Royale", "RPG", "Third Person", "Horror", "Dystopian"])
+    //results
+    const [gameName, setGameName] = useState('')
+    const [gameImage, setGameImage] = useState('')
 
     const generateRandomNumbers = (max) => {
         const randoms = []
@@ -56,34 +60,34 @@ const Picking = (props) => {
         return (
             <>
             <button onClick={() => {
-                getNewAddressTag()
+                getNewAddressTag(tag1.toLowerCase())
                 setSelectedTags([...selectedTags, tag1])
                 allTags.splice((allTags.indexOf(tag1)), 1)
 
                 generateRandomNumbers2(allTags.length - 1)
-                // stopTagFunction()
+                stopTagFunction()
             }}>
                 {tag1}
             </button>
 
             <button onClick={() => {
-                getNewAddressTag()
+                getNewAddressTag(tag2.toLowerCase())
                 setSelectedTags([...selectedTags, tag2])
                 allTags.splice((allTags.indexOf(tag2)), 1)
 
                 generateRandomNumbers2(allTags.length - 1)
-                // stopTagFunction()
+                stopTagFunction()
             }}>
                 {tag2}
             </button>
 
             <button onClick={() => {
-                getNewAddressTag()
+                getNewAddressTag(tag3.toLowerCase())
                 setSelectedTags([...selectedTags, tag3])
                 allTags.splice((allTags.indexOf(tag3)), 1)
 
                 generateRandomNumbers2(allTags.length - 1)
-                // stopTagFunction()
+                stopTagFunction()
             }}>
                 {tag3}
             </button>
@@ -144,7 +148,24 @@ const Picking = (props) => {
         )
     }
     const getResult = () => {
-
+        console.log('result')
+        axios.get(api)
+        .then ((res) => {
+            let random = Math.floor(Math.random() * res.data.count)
+            console.log(random)
+            if (random > 40) {
+                setGameName(res.data.results[Math.floor(Math.random() * 40)].name)
+                setGameImage(res.data.results[Math.floor(Math.random() * 40)].background_image)
+            } else if (random == 0) {
+                return (<p>Sorry no games under those Genres!</p>)
+            } else {
+                setGameName(res.data.results[random].name)
+                setGameName(res.data.results[random].background_image)
+            }
+            
+            console.log(res.data.results[Math.floor(Math.random() * res.data.count)])
+            console.log(res.data.count)
+        }) 
     }
 
     const getNewAddressGenre = (genre) => {
@@ -156,15 +177,16 @@ const Picking = (props) => {
     }
 
     const stopGenreFunction = () => {
-        if (allGenres.length < 14) {
+        if (selectedGenres.length > 1) {
             setStopGenre(false)
             setStopTag(true)
         }
     }
 
     const stopTagFunction = () => {
-        if (allTags.length < 26) {
+        if (selectedTags.length > -1) {
             setStopTag(false)
+            getResult()
         }
     }
 
@@ -177,7 +199,15 @@ const Picking = (props) => {
         <>
             
             {stopGenre ? makeGenreButtons() : null}
-            {stopTags ? makeTagButtons() : null}
+            {stopTags ? makeTagButtons() : null} <br/>
+            Selected Genres: {selectedGenres} <br/>
+            Selected Tags{selectedTags} <br/>
+            <div>
+                <h1>Your Game</h1>
+                <p>Name: {gameName}</p>
+                <img src={gameImage}/>
+            </div>
+            {gameName}
         </>
     )
         
