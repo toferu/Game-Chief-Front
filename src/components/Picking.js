@@ -152,10 +152,11 @@ const Picking = (props) => {
         axios.get(api)
         .then ((res) => {
             let random = Math.floor(Math.random() * res.data.count)
+            let lessRandom = Math.floor(Math.random() * 40)
             console.log(random)
             if (random > 40) {
-                setGameName(res.data.results[Math.floor(Math.random() * 40)].name)
-                setGameImage(res.data.results[Math.floor(Math.random() * 40)].background_image)
+                setGameName(res.data.results[lessRandom].name)
+                setGameImage(res.data.results[lessRandom].background_image)
             } else if (random == 0) {
                 return (<p>Sorry no games under those Genres!</p>)
             } else {
