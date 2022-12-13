@@ -161,7 +161,7 @@ const Picking = (props) => {
                 return (<p>Sorry no games under those Genres!</p>)
             } else {
                 setGameName(res.data.results[random].name)
-                setGameName(res.data.results[random].background_image)
+                setGameImage(res.data.results[random].background_image)
             }
             
             console.log(res.data.results[Math.floor(Math.random() * res.data.count)])
