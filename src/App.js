@@ -13,65 +13,46 @@ import './App.css';
 const App = () => {
 
   const [games, setGames] = useState([])
-  // const [gameGenre, setgameGenre] = useState()
-  const [genre, setGenre] = useState('')
-  
-
-
-  // const allGenres = ['Action', 'Indie', 'Adventure', 'RPG', 'Strategy', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Racing', 'Family', 'Board Games', 'Educational', 'Card']
-  
-//   const randomGenre = () => {
-//     setGenre(allGenres[Math.floor(Math.random() * allGenres.length)])
-//  }
-
-  // const getGames = (res) => {
-  //   // for (let i = 1; i <= 161; i ++) {
-  //     axios.get(`http://localhost3000/games/seed`)
-  //     .then(res => setGames(res.data.results), 
-  //     (err) => console.log(err)).catch((error) => console.log(error))
-  //   }
-  
 
   
-  // // const filtering = () => {
-  // //   games.genre.includes(genre) ? 
-  // // }
   
 
-  // useEffect(() => {
-  //   getGames()
-  //   // randomGenre()
-  // }, [])
+  const getGames = () => {
+      axios.get(`http://localhost:3000`)
+      .then(res => setGames(res.data), 
+      (err) => console.log(err))
+      .catch((error) => console.log(error))
+    }
+
+  const handleCreate = (data) => {
+    axios.post('http://localhost:3000/games', data)
+      .then((res)=> {
+      console.log(res)
+      setGames([...games, res.data])
+      console.log(res.data)
+      // getGames()
+    })
+  }
+
+  
+  
+
+  useEffect(() => {
+    getGames()
+    // randomGenre()
+  }, [])
 
 
-//   return (
-
-//     <div className="">
-
-//       <h1>Game Chief</h1>
-//       <p>{games.name}</p>
-
-//       {games.map((game) => {
-//         return (
-//           <>
-//           <Games key={game.id} games = {game}/>
-//           </>
-//         )
-//       })}
-
-//     </div>
-//   );
-// }
 
 return (
 
   <div className="">
 
     <h1>Game Chief</h1>
-
+    <Add handleCreate={handleCreate}/>
       <Search />
       <Lucky />
-
+      
   </div>
 );
 }

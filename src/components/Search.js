@@ -6,7 +6,7 @@ const Search = () => {
     const [searchField, setSearchField] = useState('')
     const [gameData, setGameData] = useState([])
     const [resultArray, setResultArray] = useState([])
-    const [hidden, setHidden] = useState(false)
+    const [hidden, setHidden] = useState(true)
    
    
     const newSearch = () => {
@@ -17,8 +17,7 @@ const Search = () => {
 
     const handleChange = (e) => {
         setSearchField(e.target.value)
-        setHidden(true)
-       
+       setHidden(true)
 
     }
 return (
@@ -34,15 +33,18 @@ return (
         </div>
 
         <>
-            {gameData.map((data) => {
+            {hidden ? gameData.map((data) => {
                 return(
                     <span>
-                        {<p onClick={ () => 
-                        setResultArray(resultArray.concat([data])).then(gameData.hide)}>
-                        {data.name}</p>} 
+                        {<p onClick={ event => {
+                        setResultArray(resultArray.concat([data]))
+                        setHidden(false)}
+                        }>
+                        {data.name}</p>
+                        } 
                     </span>
                 )
-            })}
+            }): null}
         </>
 
             <div>
@@ -50,6 +52,8 @@ return (
                     return(
                         <ol>
                             <li>{result.name}</li>
+                            <input type='text' name='comment' placeholder='add a comment'/>
+                            <input type='submit' name='Submit List'/>
                         </ol>
                     )
                 })}
