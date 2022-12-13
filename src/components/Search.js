@@ -7,6 +7,7 @@ const Search = (props) => {
     const [gameData, setGameData] = useState([])
     const [resultArray, setResultArray] = useState([])
     const [hidden, setHidden] = useState(true)
+    const [hideRemoved, setHideRemoved] = useState(true)
    
    
     const newSearch = () => {
@@ -23,6 +24,7 @@ const Search = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         props.handleCreate(resultArray)
+        alert('Your list was submitted!')
         console.log(resultArray)
 
     }
@@ -37,6 +39,7 @@ const Search = (props) => {
 return (
     <section>
         <div>
+            <h2>Create A Game List</h2>
             <input name='q' 
             type="search"
             placeholder="Search Games"
@@ -65,9 +68,10 @@ return (
                 {resultArray.map((result) => {
                     return(
                         <ol>
-                            <li>{result.name}</li>
+                           <li>{result.name}</li>
                             {/* <input type='text' name='comment' placeholder='add a comment'/> */}
-                            <button onClick={() => splice()} value='Remove'>Remove</button>
+                            <button onClick={() => {
+                             splice()}} value='Remove'>Remove</button>
                         </ol>
                     )
                 })} 
