@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {useState} from 'react'
 
-const Search = () => {
+const Search = (props) => {
     const [api, setApi] = useState('https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a')
     const [searchField, setSearchField] = useState('')
     const [gameData, setGameData] = useState([])
@@ -18,7 +18,21 @@ const Search = () => {
     const handleChange = (e) => {
         setSearchField(e.target.value)
        setHidden(true)
+    }
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        props.handleCreate(resultArray)
+        console.log(resultArray)
+
+    }
+
+
+    const splice = (event) => {
+        resultArray.splice(event, 1)
+        //Trying to hide the text of the removed data
+        event.target.value = null
+        console.log(resultArray)
     }
 return (
     <section>
@@ -28,7 +42,7 @@ return (
             placeholder="Search Games"
             onChange={handleChange}
             />
-            <input type="submit"
+            <input type="submit" value='Search'
             onClick={newSearch}/>
         </div>
 
@@ -52,14 +66,17 @@ return (
                     return(
                         <ol>
                             <li>{result.name}</li>
-                            <input type='text' name='comment' placeholder='add a comment'/>
-                            <input type='submit' name='Submit List'/>
+                            {/* <input type='text' name='comment' placeholder='add a comment'/> */}
+                            <button onClick={() => splice()} value='Remove'>Remove</button>
                         </ol>
                     )
-                })}
+                })} 
+                <input type='submit' value='Submit' onClick={handleSubmit}/>
             </div>
     </section>
 )    
 
 }
 export default Search
+
+//the remove button functionality does not work yet

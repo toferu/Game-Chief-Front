@@ -49,9 +49,9 @@ return (
   <div className="">
 
     <h1>Game Chief</h1>
-    <Add handleCreate={handleCreate}/>
-      <Search />
-      <Lucky />
+    <button onClick={<Add handleCreate={handleCreate}/>}>Add A Game</button>
+      <Search handleCreate={handleCreate}/>
+      {/* <Lucky /> */}
       
   </div>
 );
