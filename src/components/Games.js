@@ -1,10 +1,15 @@
+import {useState, useEffect} from 'react'
+
+
+
 const Games = (props) => {
-    return(
+  return(
      <>
-       <h3>Name: {props.games.name}</h3>
-       {/* <img src={props.games.background_image} alt="game cover"></img> */}
-       {/* <p>Genre: {props.games.genres[0].name}</p> */}
-       <p>Platform: {props.games.platforms}</p>
+     
+       <h3>Name: {props.game.name}</h3>
+       <img src={props.game.image} alt="game cover"></img>
+       <p>Genre: {props.game.genre}</p>
+       <p>Platform: {props.game.platform}</p>
      </>
     )
  }
