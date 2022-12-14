@@ -11,63 +11,44 @@ const Search = (props) => {
     // const [hideRemoved, setHideRemoved] = useState(true)
     const [listName, setListName] = useState('')
    
-   
+//Search term concatenated to api url. Results added to gameData state   
     const newSearch = () => {
 
         axios.get(api + `&search=${searchField}`).then(res => setGameData(res.data.results))
 
     }
-
+//This is important but I am too tired to remember what it does or how to describe it.
     const handleChange = (e) => {
         setSearchField(e.target.value)
        setHidden(true)
     }
-
+//This does some heavy lifting. Games list and title are passed to db here.
     const handleSubmit = (e) => {
         e.preventDefault()
         props.handleCreate({name: listName, list: resultArray})
         alert('Your list was submitted!')
         setCompoHider(false)
-        console.log(resultArray)
+        // console.log(resultArray)
 
     }
-
+//This readies the list title for the schema
     const handleListName = (e) => {
         setListName(e.target.value)
     }
-    // const list = () => {
-    //     resultArray.map((result) => {
-    //         return(
-    //             <ol>
-    //                 <li>{result.name}</li>
-    //                 {/* <input type='text' name='comment' placeholder='add a comment'/> */}
-    //                 <button onClick={() => {
-    //                 handleRemove(result) }} value='Remove'>Remove</button>
-    //             </ol>
-    //         )
-    //     })
-    // }
-
     
-
+//This works, it just doesn't update right away
     const handleRemove = (result) => {
         resultArray.splice(resultArray.indexOf(result), 1)
-        // list()
+        // setHideRemoved(false)
+        return null
     }
     
-    // const splice = (index) => {
-    //     resultArray.splice(index, 1)
-    //     console.log(resultArray)
-    // }
-    // useEffect(() => {
-    //     list()
-    // }, [])
     
 return (
     <section>
         <div>
             <h2>Create A Game List</h2>
-
+{/* This is the name field, search field, & submit button */}
            { compoHider ? <><input 
             name='q' 
             type="search"
@@ -75,16 +56,17 @@ return (
             onChange={handleChange}
             />
             <br/>
+            <input type="submit" value='Search'
+            onClick={newSearch}/> </>: null }
+            <br/>
             <input 
             name='name' 
             type='text' 
             placeholder='name your list' 
             onChange={handleListName} />
-            <br/>
-            <input type="submit" value='Search'
-            onClick={newSearch}/> </>: null }
-        </div>
 
+        </div>
+{/* Here's how the search results are displayed. The clicked title is pushed to an array. */}
         <>
             {hidden ? gameData.map((data) => {
                 return(
@@ -101,18 +83,18 @@ return (
                 )
             }): null}
         </>
-
+{/* This is where selected titles are displayed. And there's a remove button */}
             <div>
             {resultArray.map((result) => {
             return(
                 <ul>
-                    <li>{result.name}</li>
-                    {/* <input type='text' name='comment' placeholder='add a comment'/> */}
-                    <button onClick={() => {
+                   <li>{result.name}</li>
+                   <button onClick={() => {
                     handleRemove(result) }} value='Remove'>Remove</button>
                 </ul>
             )
         })}
+{/* Submit your list when you're ready */}
                 <input type='submit' value='Submit' onClick={handleSubmit}/>
             </div>
     </section>
@@ -121,4 +103,3 @@ return (
 }
 export default Search
 
-//the remove button functionality does not work yet
