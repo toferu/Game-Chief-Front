@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 
 const Edit = (props) => {
     const [games, setGames] = useState({...props.game})
-    console.log(games)
+    // console.log(games)
 
     const handleChange = (event) => {
         setGames({...games, [event.target.name]: event.target.value})
@@ -10,7 +10,7 @@ const Edit = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        JSON.parse(games)
+        // JSON.parse(games)
         console.log(JSON.parse(games))
         props.handleEdit(games)
     }
