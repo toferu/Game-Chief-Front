@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 
 const Edit = (props) => {
-    const [games, setGames] = useState({...props.game.name})
+    const [games, setGames] = useState({...props.game})
 
 
     const handleChange = (event) => {
@@ -28,8 +28,8 @@ const Edit = (props) => {
                 <br/>
                 <br/>
                 <label htmlFor='genre'>Genre:</label>
-                <input type='text' name='genre' onChange={handleChange}/>
-                <input type="submit" /> */}
+                <input type='text' name='genre' onChange={handleChange}/> */}
+                <input type="submit" />
             </form>
         </details>
 
