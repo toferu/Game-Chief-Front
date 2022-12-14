@@ -94,10 +94,10 @@ const editReviews = (data) => {
 const deleteReviews = (deletedReview) => {
   axios.delete('https://gamechief-back.herokuapp.com/reviews/' + deletedReview._id)
   .then((response) => {
-   let newGameReviews = reviews.filter((review) => {
-     return review._id !== response._id
-    })
-   setReviews(newGameReviews)
+  //  let newGameReviews = reviews.filter((review) => {
+  //    return review._id !== response._id
+  //   })
+  //  setReviews(newGameReviews)
    getReviews()
   })
 }
