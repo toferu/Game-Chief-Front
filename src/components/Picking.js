@@ -23,6 +23,7 @@ const Picking = (props) => {
     //results
     const [gameName, setGameName] = useState('')
     const [gameImage, setGameImage] = useState('')
+    const [displayResult, setDisplayResult] = useState(false)
 
     const generateRandomNumbers = (max) => {
         const randoms = []
@@ -59,7 +60,7 @@ const Picking = (props) => {
     const makeTagButtons = () => {
         return (
             <>
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
                 getNewAddressTag(tag1.toLowerCase())
                 setSelectedTags([...selectedTags, tag1])
                 allTags.splice((allTags.indexOf(tag1)), 1)
@@ -70,7 +71,7 @@ const Picking = (props) => {
                 {tag1}
             </button>
 
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
                 getNewAddressTag(tag2.toLowerCase())
                 setSelectedTags([...selectedTags, tag2])
                 allTags.splice((allTags.indexOf(tag2)), 1)
@@ -81,7 +82,7 @@ const Picking = (props) => {
                 {tag2}
             </button>
 
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
                 getNewAddressTag(tag3.toLowerCase())
                 setSelectedTags([...selectedTags, tag3])
                 allTags.splice((allTags.indexOf(tag3)), 1)
@@ -99,7 +100,7 @@ const Picking = (props) => {
         console.log('running genres')
         return (
             <>
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
                 // giving the new values to newaddress
                 getNewAddressGenre(genre1.toLowerCase());
                 // storing what the user picked to selectedGenres
@@ -119,7 +120,7 @@ const Picking = (props) => {
                 {genre1}
             </button>
 
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
 
                 getNewAddressGenre(genre2.toLowerCase());
                 setSelectedGenres([...selectedGenres, genre2])
@@ -133,7 +134,7 @@ const Picking = (props) => {
                 {genre2}
             </button>
             
-            <button onClick={() => {
+            <button className='btn btn-secondary' onClick={() => {
                 getNewAddressGenre(genre3.toLowerCase());
                 setSelectedGenres([...selectedGenres, genre3])
                 allGenres.splice((allGenres.indexOf(genre3)), 1)
@@ -161,7 +162,7 @@ const Picking = (props) => {
                 return (<p>Sorry no games under those Genres!</p>)
             } else {
                 setGameName(res.data.results[random].name)
-                setGameName(res.data.results[random].background_image)
+                setGameImage(res.data.results[random].background_image)
             }
             
             console.log(res.data.results[Math.floor(Math.random() * res.data.count)])
@@ -188,8 +189,10 @@ const Picking = (props) => {
         if (selectedTags.length > -1) {
             setStopTag(false)
             getResult()
+            setDisplayResult(true)
         }
     }
+
 
     useEffect(() => {
         generateRandomNumbers(allGenres.length - 1)
@@ -201,15 +204,18 @@ const Picking = (props) => {
             
             {stopGenre ? makeGenreButtons() : null}
             {stopTags ? makeTagButtons() : null} <br/>
-            Selected Genres: {selectedGenres} <br/>
-            Selected Tags{selectedTags} <br/>
-            <div>
-                <h1>Your Game</h1>
-                <p>Name: {gameName}</p>
-                <img src={gameImage}/>
+            {}
+            {displayResult ? 
+            <div className="card text-bg-dark text-center">
+                <img src={gameImage} className="card-img"/>
+                <div className='card-img-overlay'>
+                    <p>Game Title: {gameName}</p>
+                </div>
             </div>
-            {gameName}
-        </>
+            : null
+            }
+            
+        </> 
     )
         
 }

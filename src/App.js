@@ -13,7 +13,12 @@ const App = () => {
 
   //CRUD
   const [games, setGames] =useState([])
-  const [display, setDisplay] = useState(false)
+  
+  const [displayPicking, setDisplayPicking] = useState(false)
+  const [submit, setSubmit] = useState(false)
+  const [list, setList] =useState(false)
+  const [findGame, setFindGame] = useState(false)
+
 
   const getGames = () => {
     axios.get('http://localhost:3000/games')
@@ -29,6 +34,24 @@ const App = () => {
      })
   }
 
+  const viewSubmit = () => {
+    setSubmit(true)
+    setList(false)
+    setFindGame(false)
+  }
+
+  const viewList = () => {
+    setSubmit(false)
+    setList(true)
+    setFindGame(false)
+  }
+
+  const viewFindGame = () => {
+    setSubmit(false)
+    setList(false)
+    setFindGame(true)
+  }
+
   useEffect(() => {
     getGames()
 
@@ -36,18 +59,54 @@ const App = () => {
 
   return (
     <div className="">
-      <Add handleCreate = {handleCreate}/>
-      {games.map((game) => {
-        return (
-          <>
-            <Games game = {game}/>
-          </>
-        )
-      })}
-      <h1>Game Chief</h1>
-      <button onClick={() => setDisplay(!display)}> Find your perfect game</button>
-      {display ? <Picking/> : null}
+
+
+      <h1 className='text-center'> Game Chief </h1>
+      <div className="nav justify-content-center">
+        <li className="nav-item">
+          <div onClick={viewSubmit}className='nav-link'>Submit Games</div>
+        </li>
+        <li className="nav-item">
+          <div onClick={viewList}className='nav-link'>Your Games List</div>
+        </li>
+        <li className="nav-item"> 
+          <div onClick={viewFindGame}className='nav-link'>Find Your Game</div>
+        </li>
+        <li className="nav-item">
+          <div className='nav-link'>Last one</div>
+        </li>
+      </div>
+
+
+        {list ?
+          <div>
+
+          {games.map((game) => {
+            return (
+              <>
+                <Games game = {game}/>
+              </>
+            )
+          })}
+          </div>
+        : null}
+
+        {submit ?
+          <div>
+            <Add handleCreate = {handleCreate}/>
+          </div>
+        : null}
+
+        {findGame ?
+          <div className='text-center'> <br/> <br/>
+            
+            <button className='btn btn-primary mb-50' onClick={() => setDisplayPicking(!displayPicking)}> Find your perfect game!</button> <br/>
+            {displayPicking ? <Picking/> : null}
        
+          </div>
+        : null}
+
+
     </div>
   );
 }
