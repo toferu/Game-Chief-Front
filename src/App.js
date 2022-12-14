@@ -41,10 +41,10 @@ const App = () => {
     axios.put('https://gamechief-back.herokuapp.com/games' + data._id, data)
     .then((response) => {
        console.log(response)
-       let newGames = (games.map((game) => {
-        return game._id !== data._id ? game : data
-       }))
-       setGames(newGames)
+      //  let newGames = (games.map((game) => {
+      //   return game._id !== data._id ? game : data
+      //  }))
+      //  setGames(newGames)
     })
  }
 
