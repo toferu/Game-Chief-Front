@@ -16,20 +16,21 @@ const App = () => {
   const [display, setDisplay] = useState(false)
 
   const getGames = () => {
-    axios.get('http://localhost:3000/games')
+    axios.get('https://gamechief-back.herokuapp.com/games')
     .then((response) => setGames(response.data), (err) => console.log(err))
     .catch((error) => console.log(error))
   }
 
   const handleCreate = (data) => {
-    axios.post('http://localhost:3000/games', data)
+    axios.post('https://gamechief-back.herokuapp.com/games', data)
      .then((response) => {
         console.log(response)
         setGames([...games, response.data])
      })
   }
+
   const handleEdit = (data) => {
-    axios.put('http://localhost:3000/games/' + data._id, data)
+    axios.put('https://gamechief-back.herokuapp.com/games' + data._id, data)
     .then((response) => {
        console.log(response)
        let newGames = (games.map((game) => {
@@ -38,8 +39,9 @@ const App = () => {
        setGames(newGames)
     })
  }
+
  const handleDelete = (deletedGame) => {
-  axios.delete('http://localhost:3000/games/' + deletedGame._id)
+  axios.delete('https://gamechief-back.herokuapp.com/games' + deletedGame._id)
   .then((response) => {
    let newGames = games.filter((game) => {
      return game._id !== response._id
@@ -70,7 +72,7 @@ const App = () => {
       {display ? <Picking/> : null}
       <h3> Or</h3>
        <h4 onClick={() => setDisplay(!display)} >Create Your Own Recommendation List</h4>
-      {display ?  <Search /> : null}
+      {display ?  <Search handleCreate = {handleCreate}/> : null}
     </div>
   );
 }

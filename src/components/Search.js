@@ -59,7 +59,8 @@ return (
     <section>
         <div>
             <h2>Create A Game List</h2>
-            <input name='q' 
+            <input 
+            name='q' 
             type="search"
             placeholder="Search Games"
             onChange={handleChange}
