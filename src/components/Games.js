@@ -13,16 +13,16 @@ console.log(props)
   return(
      <>
     <h3 onClick={() => showToggle}>{props.name}</h3>
-     {props.map((li)=> {
+     {/* {props.map((li)=> {
       return (
-        <>
-       <p>{li.name}</p>
-       <img src={li.list.background_image} alt="game cover"></img>
-       <p>Metacritic: {li.metacritic}</p>
+        <> */}
+       <p>{props.list.name}</p>
+       <img src={props.list.background_image} alt="game cover"></img>
+       <p>Metacritic: {props.list.metacritic}</p>
        
-       </> 
+       {/* </> 
     )
-  })}
+  })} */}
     </>
  )}
 
