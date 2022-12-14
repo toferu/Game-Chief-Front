@@ -49,7 +49,7 @@ const App = () => {
  }
 
  const handleDelete = (deletedGame) => {
-  axios.delete('https://gamechief-back.herokuapp.com/games/' + deletedGame._id)
+  axios.delete('https://gamechief-back.herokuapp.com/games/?' + deletedGame._id)
   .then((response) => {
    let newGames = games.filter((game) => {
      return game._id !== response._id
