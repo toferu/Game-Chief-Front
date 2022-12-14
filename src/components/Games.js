@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  const [games, setGames] = useState(...props)
+  const [games, setGames] = useState({...props})
   const [show, setShow] = useState(false)
 console.log(games.list)
 
