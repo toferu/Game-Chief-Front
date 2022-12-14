@@ -22,7 +22,7 @@ console.log(games)
   return(
      <>
     <h3 onClick={() => showToggle()}>{listName.name}</h3>
-     {games.map(({li})=> {
+     {games.map((li)=> {
       return (
         <>
        <p>{li.name}</p>
