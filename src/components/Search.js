@@ -7,6 +7,7 @@ const Search = (props) => {
     const [gameData, setGameData] = useState([])
     const [resultArray, setResultArray] = useState([])
     const [hidden, setHidden] = useState(true)
+    const [compoHider, setCompoHider] = useState(true)
     // const [hideRemoved, setHideRemoved] = useState(true)
     const [listName, setListName] = useState('')
    
@@ -26,6 +27,7 @@ const Search = (props) => {
         e.preventDefault()
         props.handleCreate({name: listName, list: resultArray})
         alert('Your list was submitted!')
+        setCompoHider(false)
         console.log(resultArray)
 
     }
@@ -65,18 +67,22 @@ return (
     <section>
         <div>
             <h2>Create A Game List</h2>
-            <input 
-            name='name' 
-            type='text' 
-            placeholder='name your list' onChange={handleListName} />
-            <input 
+
+           { compoHider ? <><input 
             name='q' 
             type="search"
             placeholder="Search Games"
             onChange={handleChange}
             />
+            <br/>
+            <input 
+            name='name' 
+            type='text' 
+            placeholder='name your list' 
+            onChange={handleListName} />
+            <br/>
             <input type="submit" value='Search'
-            onClick={newSearch}/>
+            onClick={newSearch}/> </>: null }
         </div>
 
         <>
@@ -99,12 +105,12 @@ return (
             <div>
             {resultArray.map((result) => {
             return(
-                <ol>
+                <ul>
                     <li>{result.name}</li>
                     {/* <input type='text' name='comment' placeholder='add a comment'/> */}
                     <button onClick={() => {
                     handleRemove(result) }} value='Remove'>Remove</button>
-                </ol>
+                </ul>
             )
         })}
                 <input type='submit' value='Submit' onClick={handleSubmit}/>
