@@ -3,9 +3,9 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  // const [games, setGames] = useState({...props.list})
+  const [games, setGames] = useState(props.list)
   const [show, setShow] = useState(false)
-console.log(props)
+console.log(games)
   const showToggle = () => {
     setShow(true)
   }
