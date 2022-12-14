@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  const [listName, setListName] = useState([...props.name])
+  const [listName, setListName] = useState([...props])
   const [games, setGames] = useState([...props.game.list])
   const [show, setShow] = useState(false)
 console.log(games)
@@ -15,7 +15,7 @@ console.log(games)
   
   return(
      <>
-    <h3>{listName}</h3>
+    <h3>{listName.name}</h3>
      {games.map((li)=> {
       return (
         <>
