@@ -6,7 +6,7 @@ const Games = (props) => {
   const [listName, setListName] = useState({...props.game})
   const [games, setGames] = useState([...props.game.list])
   const [show, setShow] = useState(false)
-console.log(listName)
+// console.log(listName)
 
   const showToggle = () => {
     setShow(true)
