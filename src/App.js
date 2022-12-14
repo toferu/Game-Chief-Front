@@ -122,7 +122,7 @@ const App = () => {
               <>
                 <Games key={game._id} game = {game}/>
                 <button onClick={<Edit handleEdit={handleEdit} />}>Edit</button>
-                <button onClick={()=> handleDelete}>Delete</button>
+                <button onClick={handleDelete}>Delete</button>
               </>
             )
           })} 

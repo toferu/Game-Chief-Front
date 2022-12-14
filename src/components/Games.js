@@ -3,25 +3,19 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  // const [listName, setListName] = useState({...props})
+  const [listName, setListName] = useState({...props.name})
   const [games, setGames] = useState([...props.game.list])
   const [show, setShow] = useState(false)
 console.log(games)
 
-  // const funkyArray = () => {
-  //   setGames(games.list)
-  // }
   const showToggle = () => {
     setShow(true)
   }
 
-  // useEffect(() => {
-  //   funkyArray()
-  // }, [])
   
   return(
      <>
-    <h3>{props.name}</h3>
+    <h3>{listName}</h3>
      {games.map((li)=> {
       return (
         <>

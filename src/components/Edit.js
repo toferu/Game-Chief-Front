@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 
 const Edit = (props) => {
-    const [games, setGames] = useState({...props.games})
+    const [games, setGames] = useState([...props.game])
 
     const handleChange = (event) => {
         setGames({...games, [event.target.name]: event.target.value})
