@@ -14,7 +14,7 @@ console.log(games)
     setShow(true)
   }
 
-  useEffect = (() => {
+  useEffect(() => {
     funkyArray()
   }, [])
   
