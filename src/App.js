@@ -12,7 +12,7 @@ import './App.css';
 const App = () => {
 
   //CRUD
-  const [games, setGames] =useState([])
+  const [games, setGames] = useState([])
   
   const [displayPicking, setDisplayPicking] = useState(false)
   // states for displaying the components of the nav bar
@@ -125,7 +125,7 @@ const App = () => {
                 <button onClick={() => {handleDelete(game)}}>Delete</button>
               </>
             )
-          })} 
+          })}
           </div>
         : null}
 
