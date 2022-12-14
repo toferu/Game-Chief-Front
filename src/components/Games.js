@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
+  const [listName, setListName] = useState({...props})
   const [games, setGames] = useState({...props.game.list})
   const [show, setShow] = useState(false)
 console.log(games)
@@ -20,13 +21,13 @@ console.log(games)
   
   return(
      <>
-    <h3 onClick={() => showToggle}>{games.name}</h3>
-     {games.map(({name, background_image, metacritic})=> {
+    <h3 onClick={() => showToggle()}>{listName.name}</h3>
+     {games.map(({li})=> {
       return (
         <>
-       <p>{name}</p>
-       <img src={background_image} alt="game cover"></img>
-       <p>Metacritic: {metacritic}</p>
+       <p>{li.name}</p>
+       <img src={li.background_image} alt="game cover"></img>
+       <p>Metacritic: {li.metacritic}</p>
        
        </> 
     )
