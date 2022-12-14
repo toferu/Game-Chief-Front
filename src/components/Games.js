@@ -3,20 +3,20 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  const [games, setGames] = useState({...props})
+  const [games, setGames] = useState({...props.game.list})
   const [show, setShow] = useState(false)
 console.log(games)
 
-  const funkyArray = () => {
-    setGames(games.list)
-  }
+  // const funkyArray = () => {
+  //   setGames(games.list)
+  // }
   const showToggle = () => {
     setShow(true)
   }
 
-  useEffect(() => {
-    funkyArray()
-  }, [])
+  // useEffect(() => {
+  //   funkyArray()
+  // }, [])
   
   return(
      <>
