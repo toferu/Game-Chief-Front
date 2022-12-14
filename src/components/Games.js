@@ -3,9 +3,9 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  const [games, setGames] = useState({...props})
+  const [games, setGames] = useState({...props.games})
   const [show, setShow] = useState(false)
-console.log(games.list)
+console.log(games)
 
   // const funkyArray = () => {
   //   setGames(games.list)
@@ -14,21 +14,21 @@ console.log(games.list)
     setShow(true)
   }
   
-//   return(
-//      <>
-//     <h3 onClick={() => showToggle}>{games.name}</h3>
-//      {props.map((li)=> {
-//       return (
-//         <>
-//        <p>{props.name}</p>
-//        <img src={props.background_image} alt="game cover"></img>
-//        <p>Metacritic: {props.metacritic}</p>
+  return(
+     <>
+    <h3 onClick={() => showToggle}>{games.name}</h3>
+     {games.map(({name, background_image, metacritic})=> {
+      return (
+        <>
+       <p>{name}</p>
+       <img src={background_image} alt="game cover"></img>
+       <p>Metacritic: {metacritic}</p>
        
-//        </> 
-//     )
-//   })}
-//     </>
-//  )}
-}
+       </> 
+    )
+  })}
+    </>
+ )}
+
 
  export default Games
