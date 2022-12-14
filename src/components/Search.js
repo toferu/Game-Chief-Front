@@ -7,7 +7,8 @@ const Search = (props) => {
     const [gameData, setGameData] = useState([])
     const [resultArray, setResultArray] = useState([])
     const [hidden, setHidden] = useState(true)
-    const [hideRemoved, setHideRemoved] = useState(true)
+    // const [hideRemoved, setHideRemoved] = useState(true)
+    const [listName, setListName] = useState('')
    
    
     const newSearch = () => {
@@ -18,12 +19,13 @@ const Search = (props) => {
 
     const handleChange = (e) => {
         setSearchField(e.target.value)
+        setListName(e.target.value)
        setHidden(true)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.handleCreate({list: resultArray})
+        props.handleCreate({name: listName, list: resultArray})
         alert('Your list was submitted!')
         console.log(resultArray)
 
@@ -42,6 +44,8 @@ const Search = (props) => {
     //     })
     // }
 
+    
+
     const handleRemove = (result) => {
         resultArray.splice(resultArray.indexOf(result), 1)
         // list()
@@ -59,6 +63,10 @@ return (
     <section>
         <div>
             <h2>Create A Game List</h2>
+            <input 
+            name='name' 
+            type='text' 
+            placeholder='name your list' onChange={handleChange} />
             <input 
             name='q' 
             type="search"
