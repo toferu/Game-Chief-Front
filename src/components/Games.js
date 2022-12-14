@@ -16,9 +16,9 @@ console.log(props)
      {/* {props.map((li)=> {
       return (
         <> */}
-       <p>{props.list.name}</p>
-       <img src={props.list.background_image} alt="game cover"></img>
-       <p>Metacritic: {props.list.metacritic}</p>
+       <p>{props.name}</p>
+       <img src={props.background_image} alt="game cover"></img>
+       <p>Metacritic: {props.metacritic}</p>
        
        {/* </> 
     )
