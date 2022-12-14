@@ -23,12 +23,12 @@ const Edit = (props) => {
                 <input type='text' name='name' onChange={handleChange}/>
                 <br/>
                 <br/>
-                <label htmlFor='background_image'>Image:</label>
-                <input type='text' name='background_image' onChange={handleChange}/>
+                <label htmlFor='image'>Image:</label>
+                <input type='text' name='image' onChange={handleChange}/>
                 <br/>
                 <br/>
-                <label htmlFor='rating'>Rating:</label>
-                <input type='text' name='rating' onChange={handleChange}/>
+                <label htmlFor='genre'>Genre:</label>
+                <input type='text' name='genre' onChange={handleChange}/>
                 <input type="submit" />
             </form>
         </details>
