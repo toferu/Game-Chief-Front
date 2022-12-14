@@ -71,14 +71,12 @@ return (
             {hidden ? gameData.map((data) => {
                 return(
                     <span>
-                        {<p onClick={ () => {
+                        <p onClick={ () => {
                         setResultArray(resultArray.concat([data]))
-                        console.log(resultArray)
-                        // list()
-                        setHidden(false)}
-                        }>
+                        // console.log(resultArray)
+                        setHidden(false)}}>
                         {data.name}</p>
-                        } 
+                         
                     </span>
                 )
             }): null}
