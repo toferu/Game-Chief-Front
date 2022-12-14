@@ -30,8 +30,8 @@ const Search = (props) => {
 
     }
 
-    const handleListName = (value) => {
-        setListName(value)
+    const handleListName = (e) => {
+        setListName(e.target.value)
     }
     // const list = () => {
     //     resultArray.map((result) => {
@@ -68,7 +68,6 @@ return (
             <input 
             name='name' 
             type='text' 
-            value='list-name'
             placeholder='name your list' onChange={handleListName} />
             <input 
             name='q' 
