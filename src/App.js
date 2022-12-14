@@ -120,7 +120,7 @@ const App = () => {
           {games.map((game) => {
             return (
               <>
-                <Games game = {game}/>
+                <Games key={game._id} game = {game}/>
               </>
             )
           })} 

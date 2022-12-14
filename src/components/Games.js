@@ -5,10 +5,14 @@ import {useState, useEffect} from 'react'
 const Games = (props) => {
   // const [games, setGames] = useState({...props.games})
   const [show, setShow] = useState(false)
+
+  const showToggle = () => {
+    setShow(true)
+  }
   
   return(
      <>
-    <h3 onClick={() => setShow(true)}>{props.name}</h3>
+    <h3 onClick={() => showToggle}>{props.name}</h3>
      {show ? props.map((li)=> {
       return (
         <>
