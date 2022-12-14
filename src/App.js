@@ -120,9 +120,9 @@ const App = () => {
           {games.map((game) => {
             return (
               <>
-                <Games key={game._id} game = {game}/>
                 <Edit handleEdit={handleEdit} game = {game} />
-                <button onClick={() => {handleDelete(game)}}>Delete</button>
+                <button onClick={() => {handleDelete(game)}}>Delete</button>              
+                <Games key={game._id} game = {game}/>
               </>
             )
           })}
