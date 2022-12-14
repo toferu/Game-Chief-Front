@@ -8,6 +8,8 @@ import Edit from './components/Edit'
 // import Decision from './components/Decisions'
 import Search from './components/Search'
 import Reviews from './components/Reviews'
+import EditReviews from './components/EditReview'
+
 import './App.css';
 
 const App = () => {
@@ -178,7 +180,7 @@ const deleteReviews = (deletedReview) => {
                 <>
 
                   <Reviews reviews={review}/>
-                  <editReviews reviews={review} editReviews={editReviews}/>
+                  <EditReviews reviews={review} editReviews={editReviews}/>
                   <button onClick={() => {deleteReviews(review)}}>Delete</button>
                 </>
               )

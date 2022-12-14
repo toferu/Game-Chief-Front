@@ -1,8 +1,7 @@
 import React,{useState, useEffect} from 'react'
 
-const Edit = (props) => {
+const EditReviews = (props) => {
     const [reviews, setReviews] = useState({...props.reviews})
-    // console.log(games)
 
     const handleChange = (event) => {
         setReviews({...reviews, [event.target.name]: event.target.value})
@@ -10,9 +9,7 @@ const Edit = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        // JSON.parse(games)
-        console.log(JSON.parse(games))
-        props.handleEdit(games)
+        props.editReviews(reviews)
     }
 
 
@@ -43,4 +40,4 @@ const Edit = (props) => {
     )
 }
 
-export default Edit
+export default EditReviews
