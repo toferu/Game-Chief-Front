@@ -1,15 +1,15 @@
 import {useState} from 'react'
 
 const Add = (props) => {
-   const [games, setGames] = useState({name: '', image: '', genre: '', platform: ''})
+   const [reviews, setReviews] = useState({name: '', image: '', genre: '', platform: ''})
 
    const handleChange = (event) => {
-    setGames({...games, [event.target.name]: event.target.value})
+    setReviews({...reviews, [event.target.name]: event.target.value})
    }
 
    const handleSubmit = (event) => {
       event.preventDefault()
-      props.handleCreate(games)
+      props.createReviews(reviews)
    }
 
    return(

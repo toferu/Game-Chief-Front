@@ -43,10 +43,10 @@ const App = () => {
     axios.put('https://gamechief-back.herokuapp.com/games/' + data._id, data)
     .then((response) => {
        console.log(response)
-       let newGames = (games.map((game) => {
-        return game._id !== data._id ? game : data
-       }))
-       setGames(newGames)
+      //  let newGames = (games.map((game) => {
+      //   return game._id !== data._id ? game : data
+      //  }))
+      //  setGames(newGames)
       getGames()
     })
  }
@@ -172,10 +172,11 @@ const deleteReviews = (deletedReview) => {
 
         {submit ?
           <div>
+            <Add createReviews = {createReviews}/>
             {reviews.map((review) => {
               return(
                 <>
-                  <Add createReviews = {createReviews}/>
+
                   <Reviews reviews={review}/>
                   <editReviews reviews={review} editReviews={editReviews}/>
                   <button onClick={() => {deleteReviews(review)}}>Delete</button>

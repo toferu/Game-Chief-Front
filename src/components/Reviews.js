@@ -6,10 +6,10 @@ const Reviews = (props) => {
 
   return(
     <>
-        {props.review.name}
-        <img src={props.review.image}/>
-        {props.review.genre}
-        {props.review.platform}
+        {props.reviews.name}
+        <img src={props.reviews.image}/>
+        {props.reviews.genre}
+        {props.reviews.platform}
     </>
 
   )}
