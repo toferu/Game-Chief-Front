@@ -11,6 +11,7 @@ const Edit = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         JSON.parse(games)
+        console.log(JSON.parse(games))
         props.handleEdit(games)
     }
 
