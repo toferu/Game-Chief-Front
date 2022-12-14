@@ -38,7 +38,7 @@ const App = () => {
   }
 
   const handleEdit = (data) => {
-    axios.put('https://gamechief-back.herokuapp.com/games/' + data._id, data)
+    axios.put('https://gamechief-back.herokuapp.com/games/?' + data._id, data)
     .then((response) => {
        console.log(response)
        let newGames = (games.map((game) => {
