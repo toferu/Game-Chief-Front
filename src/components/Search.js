@@ -19,7 +19,6 @@ const Search = (props) => {
 
     const handleChange = (e) => {
         setSearchField(e.target.value)
-        // setListName(list-name)
        setHidden(true)
     }
 
@@ -31,6 +30,9 @@ const Search = (props) => {
 
     }
 
+    const handleListName = (value) => {
+        setListName(value)
+    }
     // const list = () => {
     //     resultArray.map((result) => {
     //         return(
@@ -67,7 +69,7 @@ return (
             name='name' 
             type='text' 
             value='list-name'
-            placeholder='name your list' onChange={setListName(value)} />
+            placeholder='name your list' onChange={handleListName} />
             <input 
             name='q' 
             type="search"
