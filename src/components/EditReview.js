@@ -1,15 +1,17 @@
 import React,{useState, useEffect} from 'react'
 
 const Edit = (props) => {
-    const [games, setGames] = useState({...props.game})
+    const [reviews, setReviews] = useState({...props.reviews})
     // console.log(games)
 
     const handleChange = (event) => {
-        setGames({...games, [event.target.name]: event.target.value})
+        setReviews({...reviews, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        // JSON.parse(games)
+        console.log(JSON.parse(games))
         props.handleEdit(games)
     }
 

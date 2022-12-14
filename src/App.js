@@ -7,12 +7,14 @@ import Picking from './components/Picking'
 import Edit from './components/Edit'
 // import Decision from './components/Decisions'
 import Search from './components/Search'
+import Reviews from './components/Reviews'
 import './App.css';
 
 const App = () => {
 
   //CRUD
   const [games, setGames] = useState([])
+  const [reviews, setReviews] = useState([])
   
   const [displayPicking, setDisplayPicking] = useState(false)
   // states for displaying the components of the nav bar
@@ -22,7 +24,7 @@ const App = () => {
   const [search, setSearch] = useState(false)
   const [searchDisplay, setSearchDisplay] = useState(false)
 
-
+//game schema routes
   const getGames = () => {
     axios.get('https://gamechief-back.herokuapp.com/games')
     .then((response) => setGames(response.data), (err) => console.log(err))
@@ -59,6 +61,43 @@ const App = () => {
   })
 }
 
+//review schema routes
+
+const getReviews = () => {
+  axios.get('https://gamechief-back.herokuapp.com/reviews')
+  .then((response) => setReviews(response.data), (err) => console.log(err))
+  .catch((error) => console.log(error))
+}
+
+const createReviews = (data) => {
+  axios.post('https://gamechief-back.herokuapp.com/reviews', data)
+   .then((response) => {
+      console.log(response)
+      setGames([...reviews, response.data])
+   })
+}
+
+const editReviews = (data) => {
+  axios.put('https://gamechief-back.herokuapp.com/reviews/?' + data._id, data)
+  .then((response) => {
+     console.log(response)
+     let newGameReviews = (reviews.map((review) => {
+      return review._id !== data._id ? review : data
+     }))
+     setReviews(newGameReviews)
+  })
+}
+
+const deleteReviews = (deletedReview) => {
+  axios.delete('https://gamechief-back.herokuapp.com/reviews/?' + deletedReview._id)
+  .then((response) => {
+   let newGameReviews = reviews.filter((review) => {
+     return review._id !== response._id
+    })
+   setReviews(newGameReviews)
+   getReviews()
+  })
+}
 
   const viewSubmit = () => {
     setSubmit(true)
@@ -131,7 +170,8 @@ const App = () => {
 
         {submit ?
           <div>
-            <Add handleCreate = {handleCreate}/>
+            <Add createReviews = {createReviews}/>
+            <Reviews reviews={reviews}/>
           </div>
         : null}
 
