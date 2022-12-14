@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 
 
 const Games = (props) => {
-  const [games, setGames] = useState({...props.games})
+  const [games, setGames] = useState({...props.list.games})
   const [show, setShow] = useState(false)
 console.log(games)
   const showToggle = () => {
