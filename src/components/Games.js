@@ -13,16 +13,16 @@ const Games = (props) => {
   return(
      <>
     <h3 onClick={() => showToggle}>{props.name}</h3>
-     {show ? props.map((li)=> {
+     {props.map((li)=> {
       return (
         <>
        <p>{li.list.name}</p>
        <img src={li.list.background_image} alt="game cover"></img>
        <p>Metacritic: {li.list.metacritic}</p>
        {/* <p>Platform: {props.game.platform}</p> */}
-      </> 
+       </> 
     )
-  }) : null }
+  })}
     </>
  )}
  
