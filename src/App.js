@@ -38,7 +38,7 @@ const App = () => {
   }
 
   const handleEdit = (data) => {
-    axios.put('https://gamechief-back.herokuapp.com/games' + data._id, data)
+    axios.put('https://gamechief-back.herokuapp.com/games/?' + data._id, data)
     .then((response) => {
        console.log(response)
        let newGames = (games.map((game) => {
@@ -49,7 +49,7 @@ const App = () => {
  }
 
  const handleDelete = (deletedGame) => {
-  axios.delete('https://gamechief-back.herokuapp.com/games' + deletedGame._id)
+  axios.delete('https://gamechief-back.herokuapp.com/games/?' + deletedGame._id)
   .then((response) => {
    let newGames = games.filter((game) => {
      return game._id !== response._id
@@ -120,9 +120,9 @@ const App = () => {
           {games.map((game) => {
             return (
               <>
-                <Edit handleEdit={handleEdit} game = {game} />
-                <button onClick={() => {handleDelete(game)}}>Delete</button>              
                 <Games key={game._id} game = {game}/>
+                <Edit handleEdit={handleEdit} game = {game} />
+                <button onClick={() => {handleDelete(game)}}>Delete</button>
               </>
             )
           })}
