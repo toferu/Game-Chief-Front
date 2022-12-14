@@ -15,7 +15,7 @@ console.log(listName)
   
   return(
      <>
-    {/* <h3>{listName.name}</h3> */}
+    <h3>{listName.name}</h3>
      {games.map((li)=> {
       return (
         <>
