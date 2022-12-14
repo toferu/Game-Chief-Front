@@ -1,8 +1,21 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 
 const Edit = (props) => {
     const [games, setGames] = useState([...props.game])
 
+    const getEditable = (data) => {
+        axios.get('https://gamechief-back.herokuapp.com/games' + data._id, data)
+        .then((response) => {
+           console.log(response)
+        //    let newGames = (games.map((game) => {
+        //     return game._id !== data._id ? game : data
+        //    }))
+          //  setGames(newGames)
+        })
+     }
+
+
+    }
     const handleChange = (event) => {
         setGames({...games, [event.target.name]: event.target.value})
     }
@@ -12,6 +25,9 @@ const Edit = (props) => {
         props.handleEdit(games)
     }
 
+useEffect(() => {
+    getEditable()
+}, [])
 
     return(
         <>
