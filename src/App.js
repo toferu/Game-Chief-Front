@@ -40,7 +40,7 @@ const App = () => {
   }
 
   const handleEdit = (data) => {
-    axios.put('https://gamechief-back.herokuapp.com/games/?' + data._id, data)
+    axios.put('https://gamechief-back.herokuapp.com/games/' + data._id, data)
     .then((response) => {
        console.log(response)
        let newGames = (games.map((game) => {
@@ -51,7 +51,7 @@ const App = () => {
  }
 
  const handleDelete = (deletedGame) => {
-  axios.delete('https://gamechief-back.herokuapp.com/games/?' + deletedGame._id)
+  axios.delete('https://gamechief-back.herokuapp.com/games/' + deletedGame._id)
   .then((response) => {
    let newGames = games.filter((game) => {
      return game._id !== response._id
@@ -73,12 +73,12 @@ const createReviews = (data) => {
   axios.post('https://gamechief-back.herokuapp.com/reviews', data)
    .then((response) => {
       console.log(response)
-      setGames([...reviews, response.data])
+      setReviews([...reviews, response.data])
    })
 }
 
 const editReviews = (data) => {
-  axios.put('https://gamechief-back.herokuapp.com/reviews/?' + data._id, data)
+  axios.put('https://gamechief-back.herokuapp.com/reviews/' + data._id, data)
   .then((response) => {
      console.log(response)
      let newGameReviews = (reviews.map((review) => {
@@ -89,7 +89,7 @@ const editReviews = (data) => {
 }
 
 const deleteReviews = (deletedReview) => {
-  axios.delete('https://gamechief-back.herokuapp.com/reviews/?' + deletedReview._id)
+  axios.delete('https://gamechief-back.herokuapp.com/reviews/' + deletedReview._id)
   .then((response) => {
    let newGameReviews = reviews.filter((review) => {
      return review._id !== response._id
@@ -129,6 +129,7 @@ const deleteReviews = (deletedReview) => {
 
   useEffect(() => {
     getGames()
+    getReviews()
 
   }, [])
 
@@ -172,6 +173,7 @@ const deleteReviews = (deletedReview) => {
           <div>
             <Add createReviews = {createReviews}/>
             <Reviews reviews={reviews}/>
+            <editReviews reviews={reviews}/>
           </div>
         : null}
 
