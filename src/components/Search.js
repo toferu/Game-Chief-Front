@@ -28,8 +28,8 @@ const Search = (props) => {
         props.handleCreate({name: listName, list: resultArray})
         alert('Your list was submitted!')
         setCompoHider(false)
-        // console.log(resultArray)
-
+        console.log(resultArray)
+        console.log(listName)
     }
 //This readies the list title for the schema
     const handleListName = (e) => {
