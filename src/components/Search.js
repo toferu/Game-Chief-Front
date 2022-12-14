@@ -5,7 +5,7 @@ const Search = (props) => {
     const [api, setApi] = useState('https://api.rawg.io/api/games?key=bd22e2296caa4c9894e666410ee4945a')
     const [searchField, setSearchField] = useState('')
     const [gameData, setGameData] = useState([])
-    const [resultArray, setResultArray] = useState([{}])
+    const [resultArray, setResultArray] = useState([])
     const [hidden, setHidden] = useState(true)
     const [hideRemoved, setHideRemoved] = useState(true)
    
@@ -23,7 +23,7 @@ const Search = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.handleCreate(resultArray)
+        props.handleCreate({list: resultArray})
         alert('Your list was submitted!')
         console.log(resultArray)
 
