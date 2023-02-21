@@ -2,7 +2,7 @@
 
 ## About
 
-
+https://gamechief.herokuapp.com
 
 Game Chief is a full-stack application designed to help
 users select a video game to play based on a series of 
